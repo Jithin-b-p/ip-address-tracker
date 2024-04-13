@@ -29,19 +29,18 @@ const App = () => {
       const detailsApi = import.meta.env.VITE_DETAILS_URL;
       try {
         const response = await fetch(`${detailsApi}${ip}`);
-        const { location, isp } = await response.json();
-        console.log(location, isp);
-        const currentLocation = location.region + "," + location.country;
+        const { query, city, regionName, lat, lon, timezone, org } =
+          await response.json();
+
+        const currentLocation = city + "," + regionName;
         setDetails([
-          { title: "IP ADDRESS", data: ip },
+          { title: "IP ADDRESS", data: query },
           { title: "LOCATION", data: currentLocation },
-          { title: "TIMEZONE", data: location.timezone },
-          { title: "ISP", data: isp },
+          { title: "TIMEZONE", data: timezone },
+          { title: "ISP", data: org },
         ]);
 
-        setPosition([location.lat, location.lng]);
-
-        console.log(position, details);
+        setPosition([lat, lon]);
       } catch (error) {
         console.log(error);
       }
@@ -49,10 +48,18 @@ const App = () => {
     getDetails();
   }, [ip]);
 
+  const handleInputChange = (input) => {
+    setIP(input);
+  };
+
+  const handlePositionChange = (value) => {
+    setPosition(value);
+  };
+
   return (
     <main className="bg-gray-300">
-      <IpDetails details={details} />
-      <Map position={position} onPositionChange={setPosition} />
+      <IpDetails details={details} onInputChange={handleInputChange} />
+      <Map position={position} onPositionChange={handlePositionChange} />
     </main>
   );
 };

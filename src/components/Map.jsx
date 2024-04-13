@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
 import "leaflet/dist/leaflet.css";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  ZoomControl,
+} from "react-leaflet";
+import MapController from "./MapController";
 
 const Map = ({ position, onPositionChange }) => {
   const [draggable, setDraggable] = useState(false);
@@ -13,17 +20,24 @@ const Map = ({ position, onPositionChange }) => {
         const marker = markerRef.current;
         if (marker != null) {
           onPositionChange(marker.getLatLng());
+          setDraggable(true);
         }
       },
     }),
-    []
+    [onPositionChange]
   );
   const toggleDraggable = useCallback(() => {
     setDraggable((d) => !d);
   }, []);
+
   return (
     position.length > 1 && (
-      <MapContainer center={position} zoom={15} scrollWheelZoom={false}>
+      <MapContainer
+        zoomControl={false}
+        center={position}
+        zoom={15}
+        scrollWheelZoom={false}
+      >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <Marker
@@ -32,11 +46,11 @@ const Map = ({ position, onPositionChange }) => {
           position={position}
           ref={markerRef}
         >
-          <Popup minWidth={90}>
+          <MapController position={position} />
+          <ZoomControl position="bottomleft" />
+          <Popup minWidth={50}>
             <span onClick={toggleDraggable}>
-              {draggable
-                ? "Marker is draggable"
-                : "Click here to make marker draggable"}
+              {draggable ? "Marker is draggable" : "location"}
             </span>
           </Popup>
         </Marker>
