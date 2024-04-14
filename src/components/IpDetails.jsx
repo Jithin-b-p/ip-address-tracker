@@ -16,7 +16,7 @@ const IpDetails = ({ details, onInputChange }) => {
   };
 
   return (
-    <section className="relative bg-[url('/images/pattern-bg-mobile.png')] lg:bg-[url('/images/pattern-bg-desktop.png')] bg-no-repeat bg-center bg-cover h-[58.5svh] xl:h-[47svh] flex flex-col pt-6 gap-6">
+    <section className="relative bg-[url('/images/pattern-bg-mobile.png')] lg:bg-[url('/images/pattern-bg-desktop.png')] bg-no-repeat bg-center bg-cover h-[20rem] xl:h-[47svh] flex flex-col pt-6 gap-6">
       <h1 className="mx-auto text-[1.6rem] md:text-[2rem] font-medium text-white">
         IP Address Tracker
       </h1>
@@ -31,6 +31,7 @@ const IpDetails = ({ details, onInputChange }) => {
         <button
           type="submit"
           className="p-5 px-[1.5rem] overflow-hidden bg-black rounded-r-xl"
+          aria-label="submit"
         >
           <IconArrow />
         </button>

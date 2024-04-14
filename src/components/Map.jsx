@@ -9,6 +9,7 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import MapController from "./MapController";
+import icon from "../icon";
 
 const Map = ({ position, onPositionChange }) => {
   const [draggable, setDraggable] = useState(false);
@@ -45,6 +46,7 @@ const Map = ({ position, onPositionChange }) => {
           eventHandlers={eventHandlers}
           position={position}
           ref={markerRef}
+          icon={icon}
         >
           <MapController position={position} />
           <ZoomControl position="bottomleft" />

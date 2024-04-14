@@ -43,11 +43,6 @@ main {
 }
 
 .leaflet-container {
-  height: 100svh;
+  height: 100vh;
   z-index: 10;
-}
-
-input:focus {
-  border: none;
-  outline: none;
 }
