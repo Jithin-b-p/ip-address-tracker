@@ -15,7 +15,6 @@ const App = () => {
         const response = await fetch(`${ipApi}`);
         const { ip } = await response.json();
         setIP(ip);
-        console.log(ip);
       } catch (error) {
         console.log(error);
       }
