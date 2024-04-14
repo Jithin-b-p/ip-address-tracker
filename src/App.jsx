@@ -10,9 +10,8 @@ const App = () => {
 
   useEffect(() => {
     async function getIP() {
-      const ipApi = import.meta.env.VITE_IP_URL;
       try {
-        const response = await fetch(`${ipApi}`);
+        const response = await fetch("https://api.ipify.org/?format=json");
         const { ip } = await response.json();
         setIP(ip);
       } catch (error) {
@@ -25,10 +24,10 @@ const App = () => {
   useEffect(() => {
     async function getDetails() {
       if (!ip) return;
-      const detailsApi = import.meta.env.VITE_DETAILS_URL;
+
       try {
-        const response = await fetch(`${detailsApi}${ip}`);
-        const { query, city, regionName, lat, lon, timezone, org } =
+        const response = await fetch(`http://ip-api.com/json/${ip}`);
+        const { query, city, regionName, lat, lon, timezone, isp } =
           await response.json();
 
         const currentLocation = city + "," + regionName;
@@ -36,7 +35,7 @@ const App = () => {
           { title: "IP ADDRESS", data: query },
           { title: "LOCATION", data: currentLocation },
           { title: "TIMEZONE", data: timezone },
-          { title: "ISP", data: org },
+          { title: "ISP", data: isp },
         ]);
 
         setPosition([lat, lon]);

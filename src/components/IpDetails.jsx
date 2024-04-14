@@ -36,7 +36,7 @@ const IpDetails = ({ details, onInputChange }) => {
         </button>
         {/* left-[6.5%] -bottom-[55%]  */}
       </form>
-      <ul className="z-20 shadow-xl p-6 absolute rounded-xl  w-[min(87%,60rem)] bg-white left-0 right-0 -bottom-[60%] lg:-bottom-[20%] mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left lg:py-9 xl:mx-auto xl:justify-center lg:gap-10 gap-5 lg:px-8">
+      <ul className="z-20 shadow-xl p-6 absolute rounded-xl  w-[min(87%,60rem)] bg-white left-0 right-0 -bottom-[60%] lg:-bottom-[30%] mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left lg:py-9 xl:mx-auto xl:justify-center lg:gap-10 gap-5 lg:px-8 h-auto flex-initial">
         {details.map((detail) => (
           <li
             className="lg:first:pl-0 lg:pl-8 lg:space-y-2 lg:border-l-[1.5px] lg:first:border-l-0"
